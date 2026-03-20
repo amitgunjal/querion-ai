@@ -5,6 +5,20 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Java ###
+*.class
+*.log
+*.ctxt
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+replay_pid*
+
 ### STS ###
 .apt_generated
 .classpath

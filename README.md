@@ -336,4 +336,4 @@ Current automated coverage is strongest around query reuse logic.
 
 ## License
 
-No license has been defined yet.
+This repository currently includes the GNU GPL v3 license in [LICENSE](/c:/Users/amitg/OneDrive/Desktop/projects/querion/LICENSE).
