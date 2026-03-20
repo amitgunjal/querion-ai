@@ -15,6 +15,20 @@ It combines:
 - feedback-aware scoring to avoid trusting low-quality history
 - runtime vocabulary generation from the connected database schema
 
+## Screenshots
+
+### Main Chat Experience
+
+![Main chat screen](src/main/resources/screens/Screenshot%202026-03-14%20153147.png)
+
+### Streaming And Response Flow
+
+![Streaming response screen](src/main/resources/screens/Screenshot%202026-03-21%20000521.png)
+
+### History And Insights View
+
+![History and insights screen](src/main/resources/screens/Screenshot%202026-03-21%20000552.png)
+
 ## Why It Stands Out
 
 - Safe SQL generation with named parameters and `SELECT`-only rules
