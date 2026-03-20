@@ -2,56 +2,6 @@
 
 Schema-aware NL2SQL assistant for PostgreSQL with streaming responses, query reuse, feedback-driven scoring, and runtime vocabulary generation.
 
-## Repo Name Ideas
-
-If you want a stronger GitHub presentation, these are good options:
-
-- `querion`
-- `querion-ai`
-- `querion-sql`
-- `nl2sql-querion`
-- `schema-aware-nl2sql`
-- `streaming-nl2sql`
-- `smart-query-reuse`
-- `llm-query-assistant`
-- `postgres-ai-query-assistant`
-- `schema-driven-query-assistant`
-
-Best picks:
-
-1. `querion`
-2. `querion-ai`
-3. `schema-aware-nl2sql`
-
-## GitHub Positioning
-
-Suggested GitHub repository description:
-
-`Schema-aware NL2SQL assistant for PostgreSQL with SSE streaming, query reuse, feedback scoring, and Ollama-based answer generation.`
-
-Suggested README headline:
-
-`Ask PostgreSQL in plain English and get streamed, reusable, scored answers back.`
-
-Suggested pinned-project text:
-
-`Built a Spring Boot + Ollama NL2SQL assistant with safe SELECT-only generation, live SSE streaming, query-template reuse, runtime schema vocabulary generation, and feedback-based result scoring.`
-
-Suggested GitHub topics:
-
-- `spring-boot`
-- `java`
-- `postgresql`
-- `ollama`
-- `llm`
-- `nl2sql`
-- `text-to-sql`
-- `sse`
-- `streaming`
-- `query-engine`
-- `ai-assistant`
-- `prompt-engineering`
-
 ## Overview
 
 Querion is a Spring Boot application that turns natural-language questions into safe PostgreSQL `SELECT` queries, executes them, and returns user-friendly answers in a lightweight chat UI.
