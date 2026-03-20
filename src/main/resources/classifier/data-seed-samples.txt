@@ -1,0 +1,15 @@
+list documents
+show customers
+get orders
+find invoices
+show users
+fetch payments
+count customers
+orders from yesterday
+top customers by revenue
+products with low stock
+hello list documents
+hi show customers
+hey get orders
+show customer orders
+find invoices for today

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: querion
+  datasource:
+    url: jdbc:postgresql://localhost:5432/orion
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: never
+
+server:
+  port: 8080
+
+ollama:
+  api_url: http://localhost:11434/api/generate
+  model: llama3
+  stream: true
+  connect-timeout-seconds: 5
+  read-timeout-seconds: 300
+  keep-alive: 10m

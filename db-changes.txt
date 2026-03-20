@@ -1,0 +1,105 @@
+Querion Database Changes
+========================
+DROP TABLE IF EXISTS query_history;
+
+CREATE TABLE query_history (
+    id BIGSERIAL PRIMARY KEY,
+    request_id VARCHAR(64) NOT NULL UNIQUE,
+    user_query TEXT NOT NULL,
+    query_type VARCHAR(32) NOT NULL,
+    generated_sql TEXT,
+    generated_sql_params TEXT,
+    execution_status VARCHAR(32),
+    execution_time_ms BIGINT,
+    total_duration_ms BIGINT,
+    load_duration_ms BIGINT,
+    prompt_eval_duration_ms BIGINT,
+    eval_duration_ms BIGINT,
+    result_row_count BIGINT,
+    result_preview_json TEXT,
+    error_message TEXT,
+    model_name VARCHAR(255),
+    api_url VARCHAR(255),
+    prompt_text TEXT,
+    llm_response_text TEXT,
+    final_answer_prompt TEXT,
+    final_answer_response_text TEXT,
+    final_answer TEXT,
+    key_insights TEXT,
+    llm_call_count INTEGER DEFAULT 0,
+    prompt_tokens INTEGER,
+    response_tokens INTEGER,
+    score DOUBLE PRECISION DEFAULT 0,
+    feedback_count INTEGER DEFAULT 0,
+    positive_feedback_count INTEGER DEFAULT 0,
+    negative_feedback_count INTEGER DEFAULT 0,
+    user_feedback BOOLEAN,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_query_history_created_at
+    ON query_history (created_at DESC);
+
+CREATE INDEX idx_query_history_query_type_created_at
+    ON query_history (query_type, created_at DESC);
+
+CREATE TABLE customer (
+id BIGSERIAL PRIMARY KEY,
+customer_code VARCHAR(30) UNIQUE NOT NULL,
+first_name VARCHAR(100) NOT NULL,
+last_name VARCHAR(100),
+email VARCHAR(150) UNIQUE,
+phone VARCHAR(20),
+company_name VARCHAR(150),
+active BOOLEAN DEFAULT TRUE,
+credit_limit NUMERIC(12,2) DEFAULT 0,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO customer (customer_code,first_name,last_name,email,phone,company_name,active,credit_limit) VALUES
+('CUST001','John','Doe','john.doe@example.com','9876543210','Acme Corp',true,50000),
+('CUST002','Amit','Sharma','amit.sharma@example.com','9876543211','Sharma Traders',true,75000),
+('CUST003','Priya','Nair','priya.nair@example.com','9876543212','Nair Exports',true,60000),
+('CUST004','Rahul','Verma','rahul.verma@example.com','9876543213','Verma Industries',true,45000),
+('CUST005','Sneha','Patil','sneha.patil@example.com','9876543214','Patil Foods',true,30000),
+('CUST006','Arjun','Reddy','arjun.reddy@example.com','9876543215','Reddy Logistics',true,90000),
+('CUST007','Karan','Mehta','karan.mehta@example.com','9876543216','Mehta Textiles',true,65000),
+('CUST008','Neha','Gupta','neha.gupta@example.com','9876543217','Gupta Electronics',true,55000),
+('CUST009','Vikram','Singh','vikram.singh@example.com','9876543218','Singh Automobiles',true,80000),
+('CUST010','Pooja','Joshi','pooja.joshi@example.com','9876543219','Joshi Consultants',true,40000);
+
+CREATE TABLE documents (
+id BIGSERIAL PRIMARY KEY,
+name VARCHAR(200) NOT NULL,
+description TEXT,
+docnum VARCHAR(100) UNIQUE NOT NULL,
+docurl TEXT,
+customer_id BIGINT REFERENCES customer(id),
+rig_id BIGINT,
+implementation_status VARCHAR(50),
+active BOOLEAN DEFAULT TRUE,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO documents (name,description,docnum,docurl,customer_id,rig_id,implementation_status,active) VALUES
+('Safety Certificate','Rig safety compliance document','DOC001','https://docs.example.com/doc1.pdf',1,101,'COMPLETED',true),
+('Inspection Report','Quarterly inspection report','DOC002','https://docs.example.com/doc2.pdf',2,102,'PENDING',true),
+('Maintenance Log','Rig maintenance log','DOC003','https://docs.example.com/doc3.pdf',3,103,'COMPLETED',true),
+('Operational Manual','Operational procedures','DOC004','https://docs.example.com/doc4.pdf',4,104,'IN_PROGRESS',true),
+('Compliance Document','Regulatory compliance','DOC005','https://docs.example.com/doc5.pdf',5,105,'COMPLETED',true),
+('Quality Checklist','Quality assurance checklist','DOC006','https://docs.example.com/doc6.pdf',6,106,'PENDING',true),
+('Audit Record','Internal audit details','DOC007','https://docs.example.com/doc7.pdf',7,107,'COMPLETED',true),
+('Rig Certification','Rig certification document','DOC008','https://docs.example.com/doc8.pdf',8,108,'IN_PROGRESS',true),
+('Equipment Approval','Equipment approval form','DOC009','https://docs.example.com/doc9.pdf',9,109,'COMPLETED',true),
+('Installation Report','Rig installation report','DOC010','https://docs.example.com/doc10.pdf',10,110,'PENDING',true);
+
+-- Incremental changes for feedback and scoring
+ALTER TABLE query_history ADD COLUMN IF NOT EXISTS score DOUBLE PRECISION DEFAULT 0;
+ALTER TABLE query_history ADD COLUMN IF NOT EXISTS feedback_count INTEGER DEFAULT 0;
+ALTER TABLE query_history ADD COLUMN IF NOT EXISTS positive_feedback_count INTEGER DEFAULT 0;
+ALTER TABLE query_history ADD COLUMN IF NOT EXISTS negative_feedback_count INTEGER DEFAULT 0;
+ALTER TABLE query_history ADD COLUMN IF NOT EXISTS user_feedback BOOLEAN;
+ALTER TABLE query_history ADD COLUMN IF NOT EXISTS key_insights TEXT;

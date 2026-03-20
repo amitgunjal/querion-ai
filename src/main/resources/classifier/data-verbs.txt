@@ -1,0 +1,10 @@
+list
+show
+get
+find
+fetch
+retrieve
+display
+count
+view
+give

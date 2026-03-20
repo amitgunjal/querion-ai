@@ -1,0 +1,16 @@
+{
+  "name": "querion-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Frontend package metadata for the Querion UI",
+  "scripts": {
+    "dev": "echo \"Frontend tooling has been initialized. The current UI is still served from src/main/resources/static.\"",
+    "build": "echo \"Add a bundler migration before using a frontend build step.\"",
+    "preview": "echo \"Preview is not configured yet.\""
+  },
+  "dependencies": {
+    "marked": "^15.0.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
